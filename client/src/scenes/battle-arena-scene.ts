@@ -1,27 +1,64 @@
 import { KAPLAYCtx } from "kaplay";
-import { kap } from "../contexts/kaplay-context";
 import { fetchMapData } from "../utils/fetch-map-data";
+import { drawTiles } from "../utils/draw-tiles";
 
 /**
  *
  * @param kapCtx
  */
 export async function battleArenaScene(kapCtx: KAPLAYCtx<{}, never>) {
-  kap.add([
-    kap.sprite("background-layer-1"),
-    kap.pos(0, 0),
-    kap.scale(4),
-    kap.fixed(),
+  kapCtx.add([
+    kapCtx.sprite("background-layer-1"),
+    kapCtx.pos(0, 0),
+    kapCtx.scale(4),
+    kapCtx.fixed(),
   ]);
-  kap.add([
-    kap.sprite("background-layer-2"),
-    kap.pos(0, 0),
-    kap.scale(4),
-    kap.fixed(),
+  kapCtx.add([
+    kapCtx.sprite("background-layer-2"),
+    kapCtx.pos(0, 0),
+    kapCtx.scale(4),
+    kapCtx.fixed(),
   ]);
-  const { tileheight, tilewidth, layer } = await fetchMapData(
+  const { tileheight, tilewidth, layers } = await fetchMapData(
     "/maps/arena.json"
   );
 
-  const map = kap.add([kap.pos(0, 0)]);
+  const map = kapCtx.add([kapCtx.pos(0, 0)]);
+
+  let layer;
+  for (layer of layers) {
+    if (
+      layer.name === "DecorationSpawnPoints" &&
+      layer.type === "objectgroup"
+    ) {
+      for (const obj of layer.objects) {
+        switch (obj.name) {
+          case "shop":
+            map.add([
+              kapCtx.sprite("shop", { anim: "default" }),
+              kapCtx.pos(obj.x, obj.y),
+              kapCtx.area(),
+              kapCtx.anchor("center"),
+            ]);
+            break;
+          case "fence-1":
+            map.add([
+              kapCtx.sprite("fence-1"),
+              kapCtx.pos(obj.x, obj.y + 6),
+              kapCtx.area(),
+              kapCtx.anchor("center"),
+            ]);
+            break;
+          default:
+        }
+      }
+
+      continue;
+    }
+    if (layer.type === "tilelayer") {
+      drawTiles(kapCtx, map, layer, tilewidth, tileheight);
+    }
+  }
+  kapCtx.camPos(kapCtx.center().x - 450, kapCtx.center().y - 160);
+  kapCtx.camScale(4, 4);
 }
