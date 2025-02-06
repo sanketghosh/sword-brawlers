@@ -1,4 +1,7 @@
+// packages
 import { GameObj, KAPLAYCtx } from "kaplay";
+
+// local modules
 import { TiledTileLayer } from "../types";
 
 export function drawTiles(

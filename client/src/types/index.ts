@@ -1,5 +1,7 @@
 // custom ts types goes here
 
+import { GameObj } from "kaplay";
+
 type TiledBaseLayer = {
   id: number;
   name: string;
@@ -36,4 +38,21 @@ export type TiledObject = {
   visible: boolean;
   x: number;
   y: number;
+};
+
+export type Entity = {
+  gameObj: GameObj;
+  setControls: () => void;
+};
+
+export enum Directions {
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
+}
+
+export type KeysTypes = {
+  LEFT: string;
+  RIGHT: string;
+  UP: string;
+  DOWN: string;
 };
