@@ -1,5 +1,6 @@
 import { kap } from "./contexts/kaplay-context";
 import { battleArenaScene } from "./scenes/battle-arena-scene";
+import "./modal";
 
 // loading assets
 kap.loadSprite(

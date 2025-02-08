@@ -4,10 +4,78 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
     <title>Sword Brawlers</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main class="font-inter selection:bg-gray-800 selection:text-gray-100">
+      <!-- first modal -->
+      <div
+        id="modal"
+        class="fixed top-[0] left-[0] w-full h-full bg-[#000000d2] flex justify-center items-center"
+      >
+        <div
+          class="w-[500px] bg-white rounded-md py-4 px-5 relative flex flex-col items-start space-y-5 m-4"
+        >
+          <h1 class="font-VT323 font-bold text-2xl md:text-3xl lg:text-4xl">
+            Sword Brawlers
+          </h1>
+          <form
+            action=""
+            class="flex flex-col w-full space-y-3 font-VT323 text-xl"
+          >
+            <input
+              type="text"
+              class="border rounded-md px-2 py-2 ring-0 outline-0 focus-visible:ring-1 focus-visible:ring-offset-2"
+              placeholder="Enter your username."
+            />
+            <input
+              type="text"
+              class="border rounded-md px-2 py-2 ring-0 outline-0 focus-visible:ring-1 focus-visible:ring-offset-2"
+              placeholder="Enter a game ID or generate an ID"
+            />
+            <button
+              type="button"
+              class="py-2 bg-gray-700 text-white transition-all rounded-md cursor-pointer hover:bg-gray-800"
+            >
+              Generate ID
+            </button>
+            <button
+              type="button"
+              id="submitName"
+              class="py-2 bg-violet-700 hover:bg-violet-800 text-white transition-all cursor-pointer rounded-md"
+            >
+              Start Game
+            </button>
+          </form>
+          <div class="h-[1px] w-full bg-gray-500"></div>
+          <div
+            class="flex gap-2 w-full items-center flex-col justify-between h-full"
+          >
+            <h1
+              class="text-left w-full uppercase select-none font-extrabold text-red-500"
+            >
+              Game Control Instructions
+            </h1>
+            <h2 class="border rounded-md p-2 leading-tight">
+              If you are creating the game your controls are:
+              <b>'a' = left, 'd' = right, 'w' = jump and 's' = attack</b>
+            </h2>
+            <h2 class="border rounded-md p-2 leading-tight">
+              If you are <b>not</b> creating the game your controls are:
+              <b
+                >'left arrow' = left, 'right arrow' = right, 'top arrow' = jump
+                and 'down/bottom arrow' = attack</b
+              >
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <h3 id="displayName"></h3>
+
+      <div id="app"></div>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
