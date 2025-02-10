@@ -2,6 +2,9 @@
   "name": "sword-brawlers-api",
   "module": "src/server.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun run src/server.ts --watch"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/cors": "^2.8.17",

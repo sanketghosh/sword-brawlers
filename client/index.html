@@ -5,11 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/style.css" />
+
     <title>Sword Brawlers</title>
   </head>
   <body>
     <main class="font-inter selection:bg-gray-800 selection:text-gray-100">
-      <!-- first modal -->
+      <div
+        id="toast"
+        class="z-[1000] absolute top-3 right-3 bg-white px-3 py-3 rounded-md tracking-tight w-fit max-w-72 font-medium hidden"
+      ></div>
+      <!--  modal -->
       <div
         id="modal"
         class="fixed top-[0] left-[0] w-full h-full bg-[#000000d2] flex justify-center items-center"
@@ -22,28 +27,32 @@
           </h1>
           <form
             action=""
+            id="gameStartDetailsForm"
             class="flex flex-col w-full space-y-3 font-VT323 text-xl"
           >
             <input
               type="text"
+              id="nameInput"
               class="border rounded-md px-2 py-2 ring-0 outline-0 focus-visible:ring-1 focus-visible:ring-offset-2"
               placeholder="Enter your username."
             />
             <input
               type="text"
+              id="gameIdInput"
               class="border rounded-md px-2 py-2 ring-0 outline-0 focus-visible:ring-1 focus-visible:ring-offset-2"
               placeholder="Enter a game ID or generate an ID"
             />
             <button
               type="button"
+              id="gameIdGeneratorButton"
               class="py-2 bg-gray-700 text-white transition-all rounded-md cursor-pointer hover:bg-gray-800"
             >
               Generate ID
             </button>
             <button
-              type="button"
-              id="submitName"
-              class="py-2 bg-violet-700 hover:bg-violet-800 text-white transition-all cursor-pointer rounded-md"
+              type="submit"
+              id="startGameButton"
+              class="py-2 bg-emerald-700 hover:bg-emerald-800 text-white transition-all cursor-pointer rounded-md"
             >
               Start Game
             </button>
@@ -72,7 +81,19 @@
         </div>
       </div>
 
-      <h3 id="displayName"></h3>
+      <!-- wait for opponent modal -->
+      <div
+        id="waitForOpponentModal"
+        class="fixed top-[0] left-[0] w-full h-full bg-[#000000d2] flex justify-center items-center"
+      >
+        <div
+          class="w-[500px] bg-white rounded-md py-4 px-5 relative flex flex-col items-start space-y-5 m-4"
+        >
+          <h2>Please wait until your opponent joins.</h2>
+        </div>
+      </div>
+
+      <div id="displayDetails"></div>
 
       <div id="app"></div>
     </main>
